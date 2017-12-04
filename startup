@@ -1,0 +1,16 @@
+#!/bin/bash
+#startup script for lunatone
+echo 'running startup script'
+
+#ensure midi port is free
+sudo systemctl stop serial-getty@ttyAMA0.service
+sudo systemctl disable serial-getty@ttyAMA0.service
+
+#run python 
+echo 'running python'
+sudo python /home/pi/Desktop/master/master.py &
+
+#run puredata
+echo 'running pd'
+pd -nogui /home/pi/Documents/PD/synth.pd
+
